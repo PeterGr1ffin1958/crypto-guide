@@ -1,5 +1,6 @@
-document.getElementById("form").addEventListener("submit", async function (e) {
+document.getElementById("guideForm").addEventListener("submit", async function (e) {
   e.preventDefault();
+
   const data = {
     name: document.getElementById("name").value,
     email: document.getElementById("email").value,
@@ -9,7 +10,7 @@ document.getElementById("form").addEventListener("submit", async function (e) {
     interest: document.getElementById("interest").value,
   };
 
-  const res = await fetch("/submit", {
+  const res = await fetch("/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
