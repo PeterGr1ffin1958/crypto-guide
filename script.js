@@ -1,17 +1,18 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("lead-form");
-  const message = document.getElementById("form-message");
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    const formData = new FormData(form);
+
     const data = {
-      name: form.name.value,
-      email: form.email.value,
-      phone: form.phone.value,
-      exchange: form.exchange.value,
-      portfolio: form.portfolio.value,
-      interest: form.interest.value,
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      exchange: formData.get("exchange"),
+      portfolio: formData.get("portfolio"),
+      interest: formData.get("interest"),
     };
 
     try {
@@ -23,20 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-
-      if (result.status === "success") {
-        message.textContent = "✅ Форма успешно отправлена!";
-        message.style.color = "limegreen";
-        form.reset();
+      if (response.ok) {
+        alert("Form submitted successfully!");
+        form.reset(); // очистить поля формы после отправки
       } else {
-        message.textContent = "❌ Ошибка при отправке формы.";
-        message.style.color = "red";
+        alert("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.error("Ошибка:", error);
-      message.textContent = "❌ Ошибка при отправке формы.";
-      message.style.color = "red";
+      alert("Failed to submit the form. Please try again later.");
+      console.error("Form submission error:", error);
     }
   });
 });
