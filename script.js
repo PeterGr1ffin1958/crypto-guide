@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("leadForm");
-  const statusMessage = document.createElement("p");
-  statusMessage.style.color = "#00ff99";
-  statusMessage.style.marginTop = "1rem";
-  form.appendChild(statusMessage);
+  const form = document.getElementById("lead-form");
+  const statusMessage = document.getElementById("form-message");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -22,13 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         statusMessage.textContent = "Form submitted successfully!";
+        statusMessage.style.color = "#00ff99";
         form.reset();
       } else {
         statusMessage.textContent = "There was an error. Please try again.";
         statusMessage.style.color = "red";
       }
     } catch (error) {
-      statusMessage.textContent = "Submission failed. Please try later.";
+      statusMessage.textContent = "Submission failed. Please try again later.";
       statusMessage.style.color = "red";
     }
   });
