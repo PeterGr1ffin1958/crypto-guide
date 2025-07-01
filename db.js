@@ -18,5 +18,9 @@ connection.connect((err) => {
 module.exports = connection;
 
 const db = require('./db');
-app.use(express.static(__dirname));
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+app.use(express.static(__dirname)); // ✅ вот здесь — правильно
 
