@@ -1,9 +1,9 @@
 const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
-  host: "localhost", // или внешний хост при удалённой базе
+  host: "localhost",
   user: "root",
-  password: "IgO11012007",
+  password: "твой_пароль",
   database: "crypto_guide"
 });
 
@@ -16,7 +16,4 @@ connection.connect((err) => {
 });
 
 module.exports = connection;
-
-app.use(express.json());
-app.use(express.static(__dirname)); // ✅ вот здесь — правильно
 
