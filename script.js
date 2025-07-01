@@ -1,19 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("leadForm");
+  const statusMessage = document.createElement("p");
+  statusMessage.style.color = "#00ff99";
+  statusMessage.style.marginTop = "1rem";
+  form.appendChild(statusMessage);
 
-  form.addEventListener("submit", async function (e) {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
-
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      exchange: formData.get("exchange"),
-      portfolio: formData.get("portfolio"),
-      interest: formData.get("interest"),
-    };
+    const data = Object.fromEntries(formData.entries());
 
     try {
       const response = await fetch("/submit", {
@@ -25,14 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (response.ok) {
-        alert("Form submitted successfully!");
-        form.reset(); // очистить поля формы после отправки
+        statusMessage.textContent = "Form submitted successfully!";
+        form.reset();
       } else {
-        alert("An error occurred. Please try again.");
+        statusMessage.textContent = "There was an error. Please try again.";
+        statusMessage.style.color = "red";
       }
     } catch (error) {
-      alert("Failed to submit the form. Please try again later.");
-      console.error("Form submission error:", error);
+      statusMessage.textContent = "Submission failed. Please try later.";
+      statusMessage.style.color = "red";
     }
   });
 });
