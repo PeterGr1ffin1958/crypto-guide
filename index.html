@@ -2,43 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crypto Protection Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crypto Guide</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>🛡️ Get Your Free Crypto Protection Guide</h1>
+  <div class="form-container">
+    <h2>🛡️ Get Your Free Crypto Protection Guide</h2>
     <p>Learn how to protect your crypto assets from scams, hacks, and frauds in 2025.</p>
-
-    <form id="guideForm" action="/register" method="POST">
+    <form id="lead-form">
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="email" placeholder="Email Address" required />
       <input type="tel" name="phone" placeholder="Phone Number" required />
-
       <select name="exchange" required>
         <option value="">Choose Exchange</option>
         <option value="Binance">Binance</option>
         <option value="Coinbase">Coinbase</option>
         <option value="Bybit">Bybit</option>
       </select>
-
       <select name="portfolio" required>
         <option value="">Crypto Portfolio Value</option>
-        <option value="0-1k">$0–1k</option>
-        <option value="1k-10k">$1k–10k</option>
-        <option value="10k+">$10k+</option>
+        <option value="$0–1k">$0–1k</option>
+        <option value="$1k–10k">$1k–10k</option>
+        <option value="$10k+">$10k+</option>
       </select>
-
       <textarea name="interest" placeholder="What interests you most? (security, cold wallets, etc.)" required></textarea>
-
       <button type="submit">📩 Get the Guide</button>
+      <p id="confirmation-message" style="display:none; color:lightgreen; font-weight:bold; margin-top:10px;">
+        Ваша форма отправлена ✅
+      </p>
     </form>
-
-    <p class="disclaimer">We respect your privacy. No spam, ever.</p>
-    <p id="message"></p>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
