@@ -8,31 +8,36 @@
 </head>
 <body>
   <div class="form-container">
-    <h2>🛡️ Get Your Free Crypto Protection Guide</h2>
+    <h1>🛡️ Get Your Free Crypto Protection Guide</h1>
     <p>Learn how to protect your crypto assets from scams, hacks, and frauds in 2025.</p>
+
     <form id="lead-form">
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="email" placeholder="Email Address" required />
       <input type="tel" name="phone" placeholder="Phone Number" required />
+
       <select name="exchange" required>
         <option value="">Choose Exchange</option>
         <option value="Binance">Binance</option>
         <option value="Coinbase">Coinbase</option>
-        <option value="Bybit">Bybit</option>
+        <option value="Kraken">Kraken</option>
       </select>
+
       <select name="portfolio" required>
         <option value="">Crypto Portfolio Value</option>
-        <option value="$0–1k">$0–1k</option>
-        <option value="$1k–10k">$1k–10k</option>
-        <option value="$10k+">$10k+</option>
+        <option value="0–1k">$0–1k</option>
+        <option value="1k–10k">$1k–10k</option>
+        <option value="10k+">$10k+</option>
       </select>
-      <textarea name="interest" placeholder="What interests you most? (security, cold wallets, etc.)" required></textarea>
+
+      <textarea name="interest" placeholder="What interests you most? (security, cold wallets, etc.)"></textarea>
+
       <button type="submit">📩 Get the Guide</button>
-      <p id="confirmation-message" style="display:none; color:lightgreen; font-weight:bold; margin-top:10px;">
-        Ваша форма отправлена ✅
-      </p>
     </form>
+
+    <p id="form-message" style="margin-top: 1em; font-weight: bold;"></p>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

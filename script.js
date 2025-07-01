@@ -1,26 +1,42 @@
-document.getElementById('lead-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("lead-form");
+  const message = document.getElementById("form-message");
 
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await fetch('/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      exchange: form.exchange.value,
+      portfolio: form.portfolio.value,
+      interest: form.interest.value,
+    };
 
-    if (response.ok) {
-      document.getElementById('confirmation-message').style.display = 'block';
-      this.reset();
-    } else {
-      alert('Ошибка при отправке формы. Попробуйте позже.');
+    try {
+      const response = await fetch("/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        message.textContent = "✅ Форма успешно отправлена!";
+        message.style.color = "limegreen";
+        form.reset();
+      } else {
+        message.textContent = "❌ Ошибка при отправке формы.";
+        message.style.color = "red";
+      }
+    } catch (error) {
+      console.error("Ошибка:", error);
+      message.textContent = "❌ Ошибка при отправке формы.";
+      message.style.color = "red";
     }
-  } catch (error) {
-    console.error('Ошибка:', error);
-    alert('Ошибка при отправке формы.');
-  }
+  });
 });
